@@ -1,5 +1,6 @@
 #include "solution.h"
 
 int main() {
-    // TODO: put some code here
+    Solution sol;
+    sol.play_with_boost_asio();
 }
