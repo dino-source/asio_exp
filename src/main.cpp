@@ -2,5 +2,5 @@
 
 int main() {
     Solution sol;
-    sol.play_with_boost_asio();
+    sol.ex1_post_multiple_handlers();
 }

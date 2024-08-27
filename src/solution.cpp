@@ -4,7 +4,7 @@
 #include <boost/asio/post.hpp>
 #include <print>
 
-void Solution::play_with_boost_asio() {
+void Solution::ex1_post_multiple_handlers() {
     namespace ba = boost::asio;
 
     ba::io_context ctx;
