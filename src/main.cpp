@@ -1,23 +1,30 @@
 //
-// This code example was borrowed from boost::asio documentation:
-// https://think-async.com/Asio/boost_asio_1_30_2/doc/html/boost_asio/tutorial/tuttimer1.html
+// This code example was borrowed from the following video:
+// https://www.youtube.com/watch?v=76T3JO9kFf4
 //
-// timer.cpp
-// ~~~~~~~~~
-//
-// Copyright (c) 2003-2024 Christopher M. Kohlhoff (chris at kohlhoff dot com)
-//
-// Distributed under the Boost Software License, Version 1.0. (See accompanying
-// file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-//
+#include <boost/asio.hpp>
 
-#include "solution.h"
-
-#include <print>
+#include <iostream>
+#include <string_view>
+#include <system_error>
 
 int main() {
-    Solution sol;
-    sol.start_steady_timer();
+    namespace ba = boost::asio;
 
-    std::println("Hello World!");
+    using boost::asio::ip::tcp;
+
+    ba::io_context ctx;
+    tcp::socket socket{ctx};
+    tcp::endpoint endpoint;
+
+    socket.async_connect(endpoint, [&](std::error_code ec) {
+        if (ec) {
+            std::string_view err_msg{"Failed to connect with the following error: "};
+            std::cerr << err_msg << ec.message() << std::endl;
+        } else {
+            std::cout << "Connected to" << endpoint << std::endl;
+        }
+    });
+
+    ctx.run();
 }
