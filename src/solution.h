@@ -3,7 +3,7 @@
 
 class Solution {
 public:
-    void ex1_post_multiple_handlers();
+    void start_steady_timer();
 };
 
 #endif // DINO_SOURCE_BOOST_EXP_H
